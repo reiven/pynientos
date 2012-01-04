@@ -1,0 +1,40 @@
+pynientos
+
+Description
+===========
+
+A python API interface for 500px.com website
+Its based on Pyblr (https://github.com/ToQoz/Pyblr/) by Takatoshi Matsumoto
+
+By now, the library only supports all the "Get Photos" resource of the api.
+For more detailed information about the 500px take a look at http://developer.500px.com/docs/photos-index
+
+
+Python libraries needed
+===========
+
+python-oauth2 (https://github.com/simplegeo/python-oauth2)
+
+Example usage
+===========
+
+
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+import pynientos
+import oauth2 as oauth
+import urllib
+consumer = oauth.Consumer('*** consumer key ***','*** consumer secret ***',)
+
+client = pynientos.Pynientos(oauth.Client(consumer))
+results = client.photos_user("username=reiven&sort=created_at")
+
+License
+=======
+
+This package is distributed under XXX
+
+
+----------------------------------------------------------------
+federico reiven <reiven@gmail.com>
