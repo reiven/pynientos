@@ -1,1 +1,1 @@
-import pynilib
+from pynilib import *
