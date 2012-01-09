@@ -18,17 +18,23 @@ python-oauth2 (https://github.com/simplegeo/python-oauth2)
 Example usage
 ===========
 
+  #!/usr/bin/env python
+  #-*- coding: utf-8 -*-
 
-#!/usr/bin/env python
-#-*- coding: utf-8 -*-
+  import pynientos
+  import oauth2 as oauth
+  import urllib
+  consumer = oauth.Consumer('*** consumer key ***','*** consumer secret ***',)
+  client = pynientos.Pynientos(oauth.Client(consumer))
 
-import pynientos
-import oauth2 as oauth
-import urllib
-consumer = oauth.Consumer('*** consumer key ***','*** consumer secret ***',)
+  # get last photo of my photo stream
+  photos_user(username="reiven",sort="created_at_",rpp="1")
 
-client = pynientos.Pynientos(oauth.Client(consumer))
-results = client.photos_user("username=reiven&sort=created_at")
+  # get lastest 5 photos from editors choice
+  client.photos_editors(rpp="5")
+
+  # get the detail of a photo, at largest size and comments
+  client.photo_detail(id="1857992",image_size="4",comments="1")
 
 License
 =======
