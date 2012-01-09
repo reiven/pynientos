@@ -18,14 +18,11 @@ python-oauth2 (https://github.com/simplegeo/python-oauth2)
 Example usage
 ===========
 
-  #!/usr/bin/env python
-  #-*- coding: utf-8 -*-
-
   import pynientos
   import oauth2 as oauth
   import urllib
   consumer = oauth.Consumer('*** consumer key ***','*** consumer secret ***',)
-  client = pynientos.Pynientos(oauth.Client(consumer))
+  client = pynientos.pynilib.Pynientos(oauth.Client(consumer))
 
   # get last photo of my photo stream
   photos_user(username="reiven",sort="created_at_",rpp="1")
@@ -39,8 +36,7 @@ Example usage
 License
 =======
 
-This package is distributed under XXX
-
+This package is distributed under BSD License. See also LICENSE
 
 ----------------------------------------------------------------
 federico reiven <reiven@gmail.com>
