@@ -17,11 +17,7 @@ class Pynientos:
         self.client = self.set_oauth_client(key, secret)
         self.set_methods()
 
-    def api_key(self):
-        return {"api_key": self.client.consumer.key}
-
     def set_oauth_client(self, key, secret):
-#        consumer = oauth.Consumer(key=key, secret=secret)
         return oauth.Client(oauth.Consumer(key=key, secret=secret))
 
     def api_setting(self):
