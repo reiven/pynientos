@@ -2,9 +2,11 @@
 import re, urllib, json
 import oauth2 as oauth
 
+
 class APIError(StandardError):
     def __init__(self, msg, response=None):
         StandardError.__init__(self, msg)
+
 
 class Pynientos:
     def __init__(self, client):
@@ -25,7 +27,7 @@ class Pynientos:
           photos_fresh_week      /v1/photos?feature=fresh_week      oauth  get
           photos_user            /v1/photos?feature=user            oauth  get
           photos_user_friends    /v1/photos?feature=user_friends    oauth  get
-	  photos_search          /v1/photos/search                  oauth  get
+          photos_search          /v1/photos/search                  oauth  get
           photo_detail           /v1/photos/                        oauth  get
         """
         return map(lambda x: re.split("\s+", x.strip()),
@@ -35,32 +37,32 @@ class Pynientos:
         for api_list in self.api_setting():
             api = {}
             api["method_name"], api["path"], api["auth"], api["http_method"] = api_list
+
             def _method(api=api, id="", **params):
                 if id:
                     return getattr(self, api["http_method"])(str.join('',(api["path"],id)), params)
                 else:
-    		    return getattr(self, api["http_method"])(api["path"], params)
+                    return getattr(self, api["http_method"])(api["path"], params)
             setattr(self, api["method_name"], _method)
 
-    def get(self, path, params = ""):
+    def get(self, path, params=""):
         return self.parse_response(self.client.request(
                    self.site + path + self.parse_params(params),
                    "GET",
                    ))
 
-
-    def post(self, path, params = {}):
+    def post(self, path, params={}):
         return self.parse_response(self.client.request(
                    self.site + path,
                    "POST",
                    self.parse_params(params)
                    ))
 
-    def parse_params(self, params = ""):
-	strparam=''
-	for key in params:
-	    strparam += "&" + str.join("=",(key,params[key]))
-	return strparam
+    def parse_params(self, params=""):
+        strparam = ''
+        for key in params:
+            strparam += "&" + str.join("=", (key, params[key]))
+        return strparam
 
     def parse_response(self, result):
         resp, content = result
