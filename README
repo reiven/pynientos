@@ -21,13 +21,10 @@ Example usage
 ===========
 
   import pynientos
-  import oauth2 as oauth
-  import urllib
-  consumer = oauth.Consumer('*** consumer key ***','*** consumer secret ***',)
-  client = pynientos.pynilib.Pynientos(oauth.Client(consumer))
+  client = pynientos.pynilib.Pynientos(key='consumer key', secret='consumer secret)
 
   # get last photo of my photo stream
-  photos_user(username="reiven",sort="created_at_",rpp="1")
+  client.photos_user(username="reiven",sort="created_at_",rpp="1")
 
   # get lastest 5 photos from editors choice
   client.photos_editors(rpp="5")
