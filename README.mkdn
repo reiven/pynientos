@@ -3,12 +3,11 @@ Pynientos
 
 Description
 -----------
-
 A python API interface for 500px.com website
 Its based on [Pyblr](https://github.com/ToQoz/Pyblr/) by Takatoshi Matsumoto
 
 By now, the library only supports all the "Get Photos" resource of the api.
-For more detailed information about the 500px take a look at http://developer.500px.com/docs/photos-index
+For more detailed information about the 500px take a look at [500px Devel Docs](http://developer.500px.com/docs/photos-index)
 
 
 About the name
@@ -18,7 +17,6 @@ The 'pynientos' name came from a play on words on spanish between 'python' and '
 
 Python libraries needed
 -----------------------
-
 [python-oauth2](https://github.com/simplegeo/python-oauth2)
 
 
@@ -39,8 +37,7 @@ Example usage
 
 
 License
-=======
-
+-------
 This package is distributed under BSD License. See also LICENSE
 
 
