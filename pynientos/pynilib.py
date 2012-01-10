@@ -43,9 +43,17 @@ class Pynientos:
 
             def _method(api=api, id="", **params):
                 if id:
-                    return getattr(self, api["http_method"])(str.join('',(api["path"],id)), params)
+                    return getattr(self,
+                        api["http_method"])(str.join('', (api["path"], id)),
+                        params
+                        )
+
                 else:
-                    return getattr(self, api["http_method"])(api["path"], params)
+                    return getattr(self,
+                        api["http_method"])(api["path"],
+                        params
+                        )
+
             setattr(self, api["method_name"], _method)
 
     def get(self, path, params=""):
