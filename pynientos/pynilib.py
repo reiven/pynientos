@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*-
-import re, urllib, json
+import re
+import json
 import oauth2 as oauth
 
 
@@ -24,16 +25,16 @@ class Pynientos:
     def api_setting(self):
         """ A list of name, url, auth type and http method for the API usage """
         api_str = """
-          photos_popular         /v1/photos?feature=popular         oauth  get
-          photos_upcoming        /v1/photos?feature=upcoming        oauth  get
-          photos_editors         /v1/photos?feature=editors         oauth  get
-          photos_fresh_today     /v1/photos?feature=fresh_today     oauth  get
-          photos_fresh_yesterday /v1/photos?feature=fresh_yesterday oauth  get
-          photos_fresh_week      /v1/photos?feature=fresh_week      oauth  get
-          photos_user            /v1/photos?feature=user            oauth  get
-          photos_user_friends    /v1/photos?feature=user_friends    oauth  get
-          photos_search          /v1/photos/search                  oauth  get
-          photo_detail           /v1/photos/                        oauth  get
+          photos_popular         /v1/photos?feature=popular         get
+          photos_upcoming        /v1/photos?feature=upcoming        get
+          photos_editors         /v1/photos?feature=editors         get
+          photos_fresh_today     /v1/photos?feature=fresh_today     get
+          photos_fresh_yesterday /v1/photos?feature=fresh_yesterday get
+          photos_fresh_week      /v1/photos?feature=fresh_week      get
+          photos_user            /v1/photos?feature=user            get
+          photos_user_friends    /v1/photos?feature=user_friends    get
+          photos_search          /v1/photos/search                  get
+          photo_detail           /v1/photos/                        get
         """
         return map(lambda x: re.split("\s+", x.strip()),
                              re.split("\n", api_str.strip()))
@@ -42,7 +43,7 @@ class Pynientos:
         """ Set the API methods with the api_settings list """
         for api_list in self.api_setting():
             api = {}
-            api["method_name"], api["path"], api["auth"], api["http_method"] = api_list
+            api["method_name"], api["path"], api["http_method"] = api_list
 
             def _method(api=api, id="", **params):
                 """ Check if the parameters include an ID
