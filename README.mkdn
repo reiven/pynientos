@@ -26,10 +26,11 @@ Example usage
     import pynientos
 
     client = pynientos.pynilib.Pynientos(key='consumer key', secret='consumer secret')
+
     # if you already have a token and token_secret, you can call the lib like this
     client = pynientos.pynilib.Pynientos(key='consumer_key', secret='consumer_secret',token='token_key',token_secret='token_secret')
 
-    # get last photo of my photo stream
+    # get last photo of a photo stream
     client.photos_user(username="reiven",sort="created_at_",rpp="1")
 
     # get lastest 5 photos from editors choice
@@ -37,6 +38,9 @@ Example usage
 
     # get the detail of a photo, at largest size and comments
     client.photo_detail(id="1857992",image_size="4",comments="1")
+
+    # get authorized user profile (if token and token_secret was provided)
+    client.user()
 
 
 License
