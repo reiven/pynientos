@@ -31,7 +31,7 @@ Example usage
     client = pynientos.pynilib.Pynientos(key='consumer_key', secret='consumer_secret',token='token_key',token_secret='token_secret')
 
     # get last photo of a photo stream
-    client.photos_user(username="reiven",sort="created_at_",rpp="1")
+    client.photos_user(username="reiven",sort="created_at",rpp="1")
 
     # get lastest 5 photos from editors choice
     client.photos_editors(rpp="5")

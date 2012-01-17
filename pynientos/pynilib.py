@@ -49,9 +49,13 @@ class Pynientos:
           photos_fresh_week      /v1/photos?feature=fresh_week      get
           photos_user            /v1/photos?feature=user            get
           photos_user_friends    /v1/photos?feature=user_friends    get
+          photos_user_favorites  /v1/photos?feature=user_favorites  get
           photos_search          /v1/photos/search                  get
           photo_detail           /v1/photos/                        get
           user                   /v1/users                          get
+          user_show              /v1/users/show                     get
+          blogs_fresh            /v1/blogs?feature=fresh            get
+          blogs_user             /v1/blogs?feature=user             get
         """
         return map(lambda x: re.split("\s+", x.strip()),
                              re.split("\n", api_str.strip()))
