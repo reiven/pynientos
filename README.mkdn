@@ -24,7 +24,10 @@ Example usage
 -------------
 
     import pynientos
-    client = pynientos.pynilib.Pynientos(key='consumer key', secret='consumer secret)
+
+    client = pynientos.pynilib.Pynientos(key='consumer key', secret='consumer secret')
+    # if you already have a token and token_secret, you can call the lib like this
+    client = pynientos.pynilib.Pynientos(key='consumer_key', secret='consumer_secret',token='token_key',token_secret='token_secret')
 
     # get last photo of my photo stream
     client.photos_user(username="reiven",sort="created_at_",rpp="1")

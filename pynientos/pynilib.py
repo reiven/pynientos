@@ -10,17 +10,33 @@ class APIError(StandardError):
 
 
 class Pynientos:
-    def __init__(self, key, secret):
+    def __init__(self, **kwargs):
         self.site = "https://api.500px.com"
-        if key is None or secret is None:
-            raise ValueError("Key and secret must be set.")
 
-        self.client = self.set_oauth_client(key, secret)
+        if not 'key'in kwargs or not 'secret' in kwargs:
+            raise ValueError("Key and secret must be set.")
+        self.client = self.set_oauth_client(kwargs)
         self.set_methods()
 
-    def set_oauth_client(self, key, secret):
+    def set_oauth_client(self, kwargs):
         """ Set the oauth client with the given key and secret """
-        return oauth.Client(oauth.Consumer(key=key, secret=secret))
+        if len(kwargs) == 4:
+            if 'token' in kwargs and 'token_secret' in kwargs:
+                return oauth.Client(
+                  oauth.Consumer(
+                    key=kwargs['key'], secret=kwargs['secret']
+                  ),
+                  oauth.Token(
+                    key=kwargs['token'], secret=kwargs['token_secret']
+                  )
+                )
+            else:
+                raise ValueError("Wrong parameters")
+        else:
+            return oauth.Client(
+                oauth.Consumer(key=kwargs['key'],
+                secret=kwargs['secret']
+            ))
 
     def api_setting(self):
         """ A list of name, url, auth type and http method for the API usage """
@@ -35,6 +51,7 @@ class Pynientos:
           photos_user_friends    /v1/photos?feature=user_friends    get
           photos_search          /v1/photos/search                  get
           photo_detail           /v1/photos/                        get
+          user                   /v1/users                          get
         """
         return map(lambda x: re.split("\s+", x.strip()),
                              re.split("\n", api_str.strip()))
@@ -86,7 +103,8 @@ class Pynientos:
     def parse_response(self, result):
         """ Parse the response from the server to check for errors """
         resp, content = result
-        content = json.loads(content)
         if 400 <= int(resp['status']) <= 600:
-            raise APIError(resp['status'], result)
+            raise APIError(content)
+
+        content = json.loads(content)
         return content
