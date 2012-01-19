@@ -58,6 +58,7 @@ class Pynientos:
           blogs_fresh            /v1/blogs?feature=fresh            get
           blogs_user             /v1/blogs?feature=user             get
           blog_detail            /v1/blogs/                         get
+          post_blog              /v1/blogs/                         post
         """
         return map(lambda x: re.split("\s+", x.strip()),
                              re.split("\n", api_str.strip()))
@@ -95,8 +96,7 @@ class Pynientos:
     def post(self, path, params={}):
         return self.parse_response(self.client.request(
                    self.site + path,
-                   "POST",
-                   self.encode_post_params(params)
+                   "POST", body=self.encode_post_params(params)
                    ))
 
     def encode_params(self, params={}):
