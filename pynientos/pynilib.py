@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*-
 import re
+import urllib
 import json
 import oauth2 as oauth
 
@@ -56,6 +57,7 @@ class Pynientos:
           user_show              /v1/users/show                     get
           blogs_fresh            /v1/blogs?feature=fresh            get
           blogs_user             /v1/blogs?feature=user             get
+          blog_detail            /v1/blogs/                         get
         """
         return map(lambda x: re.split("\s+", x.strip()),
                              re.split("\n", api_str.strip()))
@@ -86,7 +88,7 @@ class Pynientos:
     def get(self, path, params=""):
         """ construct the complete GET url and returns the JSON response """
         return self.parse_response(self.client.request(
-                   self.site + path + self.parse_params(params),
+                   self.site + path + self.encode_params(params),
                    "GET",
                    ))
 
@@ -94,15 +96,14 @@ class Pynientos:
         return self.parse_response(self.client.request(
                    self.site + path,
                    "POST",
-                   self.parse_params(params)
+                   self.encode_post_params(params)
                    ))
 
-    def parse_params(self, params=""):
-        """ Parse the params and returns a string for the url construction """
-        strparam = ''
-        for key in params:
-            strparam += "&" + str.join("=", (key, params[key]))
-        return strparam
+    def encode_params(self, params={}):
+        return str.join('', ('&', urllib.urlencode(params)))
+
+    def encode_post_params(self, params={}):
+        return urllib.urlencode(params)
 
     def parse_response(self, result):
         """ Parse the response from the server to check for errors """
