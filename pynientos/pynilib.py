@@ -88,16 +88,23 @@ class Pynientos:
 
     def get(self, path, params=""):
         """ construct the complete GET url and returns the JSON response """
-        return self.parse_response(self.client.request(
-                   self.site + path + self.encode_params(params),
-                   "GET",
-                   ))
+        if params:
+            return self.parse_response(self.client.request(
+                str.join('', (self.site, path, self.encode_params(params))),
+                "GET",
+                ))
+
+        else:
+            return self.parse_response(self.client.request(
+                str.join('', (self.site, path)),
+                "GET",
+                ))
 
     def post(self, path, params={}):
         return self.parse_response(self.client.request(
-                   self.site + path,
-                   "POST", body=self.encode_post_params(params)
-                   ))
+            str.join('', (self.site, path)),
+            "POST", body=self.encode_post_params(params)
+            ))
 
     def encode_params(self, params={}):
         return str.join('', ('&', urllib.urlencode(params)))
