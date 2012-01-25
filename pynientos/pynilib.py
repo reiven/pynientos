@@ -51,7 +51,7 @@ class Pynientos:
           photos_user            /v1/photos?feature=user            get
           photos_user_friends    /v1/photos?feature=user_friends    get
           photos_user_favorites  /v1/photos?feature=user_favorites  get
-          photos_search          /v1/photos/search                  get
+          photos_search          /v1/photos/search?                 get
           photo_detail           /v1/photos/                        get
           user                   /v1/users                          get
           user_show              /v1/users/show                     get
