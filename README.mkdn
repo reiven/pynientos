@@ -45,7 +45,7 @@ Example usage
     p = client.post_photo(name="from the api")
 
     # now, proceed to upload the photo itself
-    client.upload_photo(file="/home/reiven/own/testfile.jpg",upload_key=p['upload_key'],photo_id=p['photo']['id'])
+    client.upload_photo(file="/home/pynientos/testfile.jpg",upload_key=p['upload_key'],photo_id=p['photo']['id'])
 
 License
 -------
