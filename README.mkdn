@@ -5,7 +5,7 @@ Description
 -----------
 A python API interface for 500px.com website.  
 Its based on [Pyblr](https://github.com/ToQoz/Pyblr/) by Takatoshi Matsumoto.  
-For more detailed information about the 500px take a look at [500px Devel Docs](http://developer.500px.com/)
+For more detailed information about the 500px take a look at [500px Devel Docs](http://developer.500px.com/)  
 If you want to know what methods are available in this version, take a look to [this](https://github.com/reiven/pynientos/blob/master/available_functions.txt) file
 
 About the name
@@ -48,7 +48,7 @@ Example usage
 
 License
 -------
-This package is distributed under BSD License. See also LICENSE
+This package is distributed under BSD License. See also LICENSE  
 
 
 ----------------------------------------------------------------
