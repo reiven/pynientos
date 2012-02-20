@@ -48,7 +48,7 @@ Example usage
 
 License
 -------
-This package is distributed under BSD License. See also LICENSE  
+This package is distributed under BSD License. See also [LICENSE](https://github.com/reiven/pynientos/blob/master/LICENSE)  
 
 
 ----------------------------------------------------------------
