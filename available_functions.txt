@@ -1,0 +1,53 @@
+already available and working:
+
+  http://developer.500px.com/docs/photos-index
+    get_photos_popular         /v1/photos?feature=popular         get
+    get_photos_upcoming        /v1/photos?feature=upcoming        get
+    get_photos_editors         /v1/photos?feature=editors         get
+    get_photos_fresh_today     /v1/photos?feature=fresh_today     get
+    get_photos_fresh_yesterday /v1/photos?feature=fresh_yesterday get
+    get_photos_fresh_week      /v1/photos?feature=fresh_week      get
+    get_photos_user            /v1/photos?feature=user            get
+    get_photos_user_friends    /v1/photos?feature=user_friends    get
+    get_photos_user_favorites  /v1/photos?feature=user_favorites  get
+
+  http://developer.500px.com/docs/photos-show
+    get_photo_detail           /v1/photos/                        get
+
+  http://developer.500px.com/docs/photos-search
+    get_photos_search          /v1/photos/search?                 get
+
+  http://developer.500px.com/docs/users-index
+    get_user                   /v1/users                          get
+
+  http://developer.500px.com/docs/users-show
+    get_user_show              /v1/users/show                     get
+
+  http://developer.500px.com/docs/blogs-index
+    get_blogs_fresh            /v1/blogs?feature=fresh            get
+    get_blogs_user             /v1/blogs?feature=user             get
+
+  http://developer.500px.com/docs/blogs-show
+    get_blog_detail            /v1/blogs/                         get
+
+  http://developer.500px.com/docs/photos-post
+    post_photo                 /v1/photos/                        post
+
+  http://developer.500px.com/docs/upload-post
+    upload_photo               /v1/upload/                        upload
+
+  http://developer.500px.com/docs/blogs-create
+    post_blog                  /v1/blogs/                         post
+
+not available
+
+  http://developer.500px.com/docs/photos-update
+  http://developer.500px.com/docs/photos-vote
+
+  http://developer.500px.com/docs/users-friends
+
+  http://developer.500px.com/docs/blogs-comments-show
+  http://developer.500px.com/docs/blogs-update
+  http://developer.500px.com/docs/blogs-comments-create
+
+  http://developer.500px.com/docs/blogs-delete
