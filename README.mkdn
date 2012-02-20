@@ -41,6 +41,11 @@ Example usage
     # get authorized user profile (if token and token_secret was provided)
     client.get_user()
 
+    # to post new photos, you need an upload_key (see [this](http://developer.500px.com/docs/photos-post) and [this](http://developer.500px.com/docs/auth-upload))
+    p = client.post_photo(name="from the api")
+
+    # now, proceed to upload the photo itself
+    client.upload_photo(file="/home/reiven/own/testfile.jpg",upload_key=p['upload_key'],photo_id=p['photo']['id'])
 
 License
 -------
