@@ -6,7 +6,6 @@ Description
 A python API interface for 500px.com website
 Its based on [Pyblr](https://github.com/ToQoz/Pyblr/) by Takatoshi Matsumoto
 
-By now, the library only supports all the "Get Photos" resource of the api.
 For more detailed information about the 500px take a look at [500px Devel Docs](http://developer.500px.com/)
 
 
@@ -31,16 +30,16 @@ Example usage
     client = pynientos.pynilib.Pynientos(key='consumer_key', secret='consumer_secret',token='token_key',token_secret='token_secret')
 
     # get last photo of a photo stream
-    client.photos_user(username="reiven",sort="created_at",rpp="1")
+    client.get_photos_user(username="reiven",sort="created_at",rpp="1")
 
     # get lastest 5 photos from editors choice
-    client.photos_editors(rpp="5")
+    client.get_photos_editors(rpp="5")
 
     # get the detail of a photo, at largest size and comments
-    client.photo_detail(id="1857992",image_size="4",comments="1")
+    client.get_photo_detail(id="1857992",image_size="4",comments="1")
 
     # get authorized user profile (if token and token_secret was provided)
-    client.user()
+    client.get_user()
 
 
 License

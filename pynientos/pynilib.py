@@ -3,6 +3,10 @@ import re
 import urllib
 import json
 import oauth2 as oauth
+import urllib2
+import poster
+
+opener = poster.streaminghttp.register_openers()
 
 
 class APIError(StandardError):
@@ -42,23 +46,25 @@ class Pynientos:
     def api_setting(self):
         """ A list of name, url, auth type and http method for the API usage """
         api_str = """
-          photos_popular         /v1/photos?feature=popular         get
-          photos_upcoming        /v1/photos?feature=upcoming        get
-          photos_editors         /v1/photos?feature=editors         get
-          photos_fresh_today     /v1/photos?feature=fresh_today     get
-          photos_fresh_yesterday /v1/photos?feature=fresh_yesterday get
-          photos_fresh_week      /v1/photos?feature=fresh_week      get
-          photos_user            /v1/photos?feature=user            get
-          photos_user_friends    /v1/photos?feature=user_friends    get
-          photos_user_favorites  /v1/photos?feature=user_favorites  get
-          photos_search          /v1/photos/search?                 get
-          photo_detail           /v1/photos/                        get
-          user                   /v1/users                          get
-          user_show              /v1/users/show                     get
-          blogs_fresh            /v1/blogs?feature=fresh            get
-          blogs_user             /v1/blogs?feature=user             get
-          blog_detail            /v1/blogs/                         get
-          post_blog              /v1/blogs/                         post
+          get_photos_popular         /v1/photos?feature=popular         get
+          get_photos_upcoming        /v1/photos?feature=upcoming        get
+          get_photos_editors         /v1/photos?feature=editors         get
+          get_photos_fresh_today     /v1/photos?feature=fresh_today     get
+          get_photos_fresh_yesterday /v1/photos?feature=fresh_yesterday get
+          get_photos_fresh_week      /v1/photos?feature=fresh_week      get
+          get_photos_user            /v1/photos?feature=user            get
+          get_photos_user_friends    /v1/photos?feature=user_friends    get
+          get_photos_user_favorites  /v1/photos?feature=user_favorites  get
+          get_photos_search          /v1/photos/search?                 get
+          get_photo_detail           /v1/photos/                        get
+          get_user                   /v1/users                          get
+          get_user_show              /v1/users/show                     get
+          get_blogs_fresh            /v1/blogs?feature=fresh            get
+          get_blogs_user             /v1/blogs?feature=user             get
+          get_blog_detail            /v1/blogs/                         get
+          post_blog                  /v1/blogs/                         post
+          post_photo                 /v1/photos/                        post
+          upload_photo               /v1/upload/                        upload
         """
         return map(lambda x: re.split("\s+", x.strip()),
                              re.split("\n", api_str.strip()))
@@ -105,6 +111,29 @@ class Pynientos:
             str.join('', (self.site, path)),
             "POST", body=self.encode_post_params(params)
             ))
+
+    def upload(self, path, params={}):
+
+        if 'file' in params and 'photo_id' in params and "upload_key" in params:
+            try:
+                params = {'file': open(params['file'], "rb"),
+                    'upload_key': params['upload_key'],
+                    'photo_id': params['photo_id'],
+                    'consumer_key': self.client.consumer.key,
+                    'access_key': self.client.token.key}
+
+                datagen, headers = poster.encode.multipart_encode(params)
+                request = urllib2.Request(
+                    str.join('', (self.site, path)),
+                    datagen, headers)
+                print urllib2.urlopen(request).read()
+
+            except IOError:
+                print "File %s does not exist!" % params['file']
+
+        else:
+            print "invalid parameters, see documentation"
+        return
 
     def encode_params(self, params={}):
         return str.join('', ('&', urllib.urlencode(params)))
