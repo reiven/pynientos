@@ -3,7 +3,8 @@ Pynientos
 
 Description
 -----------
-A python API interface for 500px.com website
+A python API interface for 500px.com website.
+
 Its based on [Pyblr](https://github.com/ToQoz/Pyblr/) by Takatoshi Matsumoto
 
 For more detailed information about the 500px take a look at [500px Devel Docs](http://developer.500px.com/)
@@ -17,7 +18,7 @@ The 'pynientos' name came from a play on words on spanish between 'python' and '
 Python libraries needed
 -----------------------
 [python-oauth2](https://github.com/simplegeo/python-oauth2)
-
+[poster](http://atlee.ca/software/poster/index.html)
 
 Example usage
 -------------
