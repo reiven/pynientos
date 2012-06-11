@@ -62,6 +62,7 @@ class Pynientos:
           get_blogs_user             /v1/blogs?feature=user             get
           get_blog_detail            /v1/blogs/                         get
           post_blog                  /v1/blogs/                         post
+          delete_blog_post           /v1/blogs/                         delete
           post_photo                 /v1/photos/                        post
           upload_photo               /v1/upload/                        upload
         """
@@ -133,6 +134,12 @@ class Pynientos:
         else:
             print "invalid parameters, see documentation"
         return
+
+    def delete(self, path, params={}):
+            return self.parse_response(self.client.request(
+                str.join('', (self.site, path, self.encode_params(params))),
+                "DELETE",
+                ))
 
     def encode_params(self, params={}):
         return str.join('', ('&', urllib.urlencode(params)))

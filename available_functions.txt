@@ -30,6 +30,9 @@ already available and working:
   http://developer.500px.com/docs/blogs-show
     get_blog_detail            /v1/blogs/                         get
 
+  http://developer.500px.com/docs/blogs-delete
+    delete_blog_post           /v1/blogs/                         delete
+
   http://developer.500px.com/docs/photos-post
     post_photo                 /v1/photos/                        post
 
@@ -39,7 +42,7 @@ already available and working:
   http://developer.500px.com/docs/blogs-create
     post_blog                  /v1/blogs/                         post
 
-not available
+not available yet:
 
   http://developer.500px.com/docs/photos-update
   http://developer.500px.com/docs/photos-vote
@@ -50,4 +53,4 @@ not available
   http://developer.500px.com/docs/blogs-update
   http://developer.500px.com/docs/blogs-comments-create
 
-  http://developer.500px.com/docs/blogs-delete
+
