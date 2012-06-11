@@ -18,16 +18,14 @@ class Pynientos:
     def __init__(self, **kwargs):
         self.site = "https://api.500px.com"
 
+    def auth(self, **kwargs):
+        """ Set the oauth client with the given key and secret """
         if not 'key'in kwargs or not 'secret' in kwargs:
             raise ValueError("Key and secret must be set.")
-        self.client = self.set_oauth_client(kwargs)
-        self.set_methods()
 
-    def set_oauth_client(self, kwargs):
-        """ Set the oauth client with the given key and secret """
         if len(kwargs) == 4:
             if 'token' in kwargs and 'token_secret' in kwargs:
-                return oauth.Client(
+                self.client = oauth.Client(
                   oauth.Consumer(
                     key=kwargs['key'], secret=kwargs['secret']
                   ),
@@ -38,10 +36,11 @@ class Pynientos:
             else:
                 raise ValueError("Wrong parameters")
         else:
-            return oauth.Client(
+            self.client = oauth.Client(
                 oauth.Consumer(key=kwargs['key'],
                 secret=kwargs['secret']
             ))
+        self.set_methods()
 
     def api_setting(self):
         """ A list of name, url, auth type and http method for the API usage """
@@ -109,7 +108,7 @@ class Pynientos:
     def post(self, path, params={}):
         return self.parse_response(self.client.request(
             str.join('', (self.site, path)),
-            "POST", body=self.encode_post_params(params)
+            "POST", body=urllib.urlencode(params)
             ))
 
     def upload(self, path, params={}):
@@ -137,9 +136,6 @@ class Pynientos:
 
     def encode_params(self, params={}):
         return str.join('', ('&', urllib.urlencode(params)))
-
-    def encode_post_params(self, params={}):
-        return urllib.urlencode(params)
 
     def parse_response(self, result):
         """ Parse the response from the server to check for errors """
