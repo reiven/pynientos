@@ -17,6 +17,7 @@ Python libraries needed
 -----------------------
 [python-oauth2](https://github.com/simplegeo/python-oauth2)  
 [poster](http://atlee.ca/software/poster/index.html)
+[certifi](https://pypi.python.org/pypi/certifi)
 
 Example usage
 -------------

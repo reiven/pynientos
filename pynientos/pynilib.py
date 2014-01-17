@@ -5,6 +5,7 @@ import json
 import oauth2 as oauth
 import urllib2
 import poster
+import certifi
 
 opener = poster.streaminghttp.register_openers()
 
@@ -40,6 +41,7 @@ class Pynientos:
                 oauth.Consumer(key=kwargs['key'],
                 secret=kwargs['secret']
             ))
+        self.client.ca_certs = certifi.where()
         self.set_methods()
 
     def api_setting(self):
